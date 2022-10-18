@@ -4,6 +4,7 @@ import Banner from '@/Banner';
 import requests from 'utils/requests';
 import { Movie } from 'typing';
 import Row from '@/Row';
+import useAuth from 'hooks/useAuth';
 
 interface Props {
   netflixOriginals: Movie[];
@@ -26,6 +27,12 @@ function Home({
   romanceMovies,
   documentaries,
 }: Props) {
+  const { logout, loading } = useAuth();
+
+  if (loading) {
+    return null;
+  }
+
   return (
     <div className='relative h-screen bg-gradient-to-b lg:h-[140vh]'>
       <Head>

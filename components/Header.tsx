@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import { TbBell, TbSearch } from 'react-icons/tb';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import useAuth from 'hooks/useAuth';
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { logout } = useAuth();
 
   function handleScroll() {
     if (window.scrollY > 0) {
@@ -43,13 +44,12 @@ function Header() {
         <TbSearch size={24} className='hidden sm:inline' />
         <p className='hidden lg:inline'>Kids</p>
         <TbBell size={24} />
-        <Link href='/account'>
-          <img
-            alt='profile'
-            src='https://rb.gy/g1pwyx'
-            className='cursor-pointer rounded'
-          />
-        </Link>
+        <img
+          onClick={logout}
+          alt='profile'
+          src='https://rb.gy/g1pwyx'
+          className='cursor-pointer rounded'
+        />
       </div>
     </header>
   );
