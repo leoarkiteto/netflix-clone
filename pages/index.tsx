@@ -27,7 +27,7 @@ function Home({
   romanceMovies,
   documentaries,
 }: Props) {
-  const { logout, loading } = useAuth();
+  const { logOut, loading } = useAuth();
 
   if (loading) {
     return null;

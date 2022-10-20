@@ -23,7 +23,7 @@ interface IAuth {
   user: User | null;
   loading: boolean;
   error: string | null;
-  logout: () => Promise<void>;
+  logOut: () => Promise<void>;
   signUp: (email: string, password: string) => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
 }
@@ -34,7 +34,7 @@ const AuthContext = createContext<IAuth>({
   loading: false,
   signUp: async () => {},
   signIn: async () => {},
-  logout: async () => {},
+  logOut: async () => {},
 });
 
 export function AuthProvider({ children }: AuthProviderProps) {
@@ -85,7 +85,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       .finally(() => setLoading(false));
   }
 
-  async function logout() {
+  async function logOut() {
     setLoading(true);
 
     signOut(auth)
@@ -95,7 +95,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }
 
   const memoedValue = useMemo(
-    () => ({ user, error, signUp, signIn, loading, logout }),
+    () => ({ user, error, signUp, signIn, loading, logOut }),
     [user, loading, error]
   );
 
